@@ -17,15 +17,27 @@ function createTask(task) {
 }
 
 const select_tasks = db.prepare(
-    // sql
-    `SELECT id, content, created_at, complete FROM tasks`
+    `SELECT 
+        id, 
+        content, 
+        TIME(created_at) AS created_at,
+        complete 
+    FROM tasks`
 );
 
 function listTasks() {
     return select_tasks.all();
 }
 
+const delete_task = db.prepare(
+    `DELETE FROM tasks WHERE id = ?`
+);
+
+function removeTask(id) {
+    delete_task.run(id);
+}
+removeTask(1);
 module.exports = { createTask };
 
-const result = createTask("Send mum flowers");
+const result = listTasks();
 console.log(result);
