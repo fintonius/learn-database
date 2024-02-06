@@ -23,3 +23,5 @@ test("can create, remove & list tasks", () => {
     const tasks = model.listTasks();
     assert.equal(tasks.length, 0);
 });
+// RUN THIS TEST USING THE FOLLOWING TERMINAL COMMAND:
+// DB_FILE=test.sqlite node test/tasks.test.js
