@@ -39,5 +39,27 @@ function removeTask(id) {
 removeTask(1);
 module.exports = { createTask };
 
+const update_content = db.prepare(/*sql*/`
+    UPDATE tasks
+    SET content = $content
+    WHERE id = $id
+    RETURNING id, content, created_at, complete
+`);
+
+function editTask(task) {
+    return update_content.get(task);
+}
+
+const update_complete = db.prepare(/*sql*/ `
+    UPDATE tasks
+    SET complete = NOT complete
+    WHERE id = ?
+    RETURNING id, content, created_at, complete
+`);
+
+function toggleTask(id) {
+    return update_complete.get(id);
+}
+
 const result = listTasks();
 console.log(result);
