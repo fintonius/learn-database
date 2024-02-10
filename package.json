@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "seed": "DB_FILE=db.sqlite node database/seed.js"
+    "seed": "DB_FILE=db.sqlite node database/seed.js",
+    "dev": "DB_FILE=db.sqlite node index.js"
   },
   "keywords": [],
   "author": "",
