@@ -13,6 +13,7 @@ const insert_task = db.prepare(`
 `);
 
 function createTask(task) {
+    console.log('this is createTask: ', task);
     return insert_task.get(task);
 }
 
@@ -36,8 +37,6 @@ const delete_task = db.prepare(
 function removeTask(id) {
     delete_task.run(id);
 }
-removeTask(1);
-module.exports = { createTask };
 
 const update_content = db.prepare(/*sql*/`
     UPDATE tasks
@@ -61,5 +60,7 @@ function toggleTask(id) {
     return update_complete.get(id);
 }
 
-const result = listTasks();
-console.log(result);
+// const result = listTasks();
+// console.log(result);
+
+module.exports = { createTask, removeTask, editTask, toggleTask, listTasks };
